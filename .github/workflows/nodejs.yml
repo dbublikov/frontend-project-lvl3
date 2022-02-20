@@ -6,8 +6,12 @@ on:
   - push
   - pull_request
 
+env:
+  CI: true
+
 jobs:
   build:
+
     # The type of machine to run the job on
     runs-on: ubuntu-latest
 
@@ -17,35 +21,28 @@ jobs:
         node-version: [14.x]
 
     steps:
-      # Check-out repository under GitHub workspace
-      # https://github.com/actions/checkout
+        # Check-out repository under GitHub workspace
+        # https://github.com/actions/checkout
       - uses: actions/checkout@v2
         # Step's name
       - name: Use Node.js ${{ matrix.node-version }}
         # Configures the node version used on GitHub-hosted runners
         # https://github.com/actions/setup-node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         # The Node.js version to configure
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install, build
-        # Install and build project
-        run: |
-          npm i
-        # Add environment variables
-        env:
-          CI: true
-      - name: Run linter
-        # Run Linter
-        run: |
-          npm run lint
-      - name: Test & publish code coverage
-        # Publish code coverage on Code Climate
-        # https://github.com/paambaati/codeclimate-action
-        uses: paambaati/codeclimate-action@v2.7.5
-        # Add Code Climate secret key
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: npm run test-coverage
-          debug: true
+          cache: true
+      - run: make install
+      - run: make lint
+      - run: make test
+      # - name: Test & publish code coverage
+      #   # Publish code coverage on Code Climate
+      #   # https://github.com/paambaati/codeclimate-action
+      #   uses: paambaati/codeclimate-action@v3
+      #   # Add Code Climate secret key
+      #   env:
+      #     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      #   with:
+      #     coverageCommand: make test-coverage
+      #     debug: true

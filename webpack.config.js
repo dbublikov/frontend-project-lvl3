@@ -1,28 +1,9 @@
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
-let mode = 'development'
-if (process.env.NODE_ENV === 'production') {
-    mode = 'production'
-}
-console.log(mode + ' mode')
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
-  mode: mode,
-  entry: './index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
+  mode: process.env.NODE_ENV || 'development',
   devServer: {
     open: true,
-    port: 8080,
-    static: {
-      directory: './src',
-      watch: true
-  }
   },
   module: {
     rules: [
@@ -36,8 +17,9 @@ module.exports = {
           },
         },
       },
-      { test: /\.css$/, 
-        use: ['style-loader', 'css-loader', 'postcss-loader']
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.scss$/,
@@ -47,8 +29,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './template.html',
+      template: 'index.html',
     }),
-    new CleanWebpackPlugin(),
   ],
+  devtool: 'source-map',
 };
