@@ -61,6 +61,7 @@
     "npm-check-updates": "^11.8.5",
     "on-change": "^2.2.3",
     "sass": "^1.39.0",
-    "sass-loader": "^12.1.0"
+    "sass-loader": "^12.1.0",
+    "yup": "^0.32.9"
   }
 }

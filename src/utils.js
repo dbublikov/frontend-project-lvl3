@@ -1,10 +1,20 @@
-// eslint-disable-next-line import/prefer-default-export
-export default (xmltext) => {
-  if (!xmltext) {
-    throw new Error('EMPTY_RSS_DATA');
+export class TypeError extends Error {
+  constructor(type, message) {
+    super();
+    this.type = type;
+    this.message = message;
+  }
+}
+
+export const parserRSS = (xmltext) => {
+  const doc = new DOMParser().parseFromString(xmltext, 'application/xml');
+
+  console.log(doc);
+
+  if (doc.querySelector('parsererror')) {
+    throw new TypeError('rss', 'Not valid RSS');
   }
 
-  const doc = new DOMParser().parseFromString(xmltext, 'application/xml');
   const title = doc.querySelector('title').textContent;
   const description = doc.querySelector('description').textContent;
 
@@ -22,8 +32,8 @@ export default (xmltext) => {
     };
   });
 
-  // console.log({ title, description, items });
-  console.log(doc);
+  console.log({ title, description, items });
+  // console.log(doc);
 
   return { title, description, items };
 };
