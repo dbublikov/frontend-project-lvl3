@@ -32,7 +32,7 @@ export default (state, elements) => {
     state.posts.forEach((post) => {
       const li = document.createElement('li');
       const a = document.createElement('a');
-      li.classList.add('list-group-item', 'list-group-item-dark');
+      li.classList.add('list-group-item', 'list-group-item-dark', 'fw-bold');
       a.textContent = post.title;
       a.setAttribute('href', post.link);
       a.setAttribute('target', '_blank');
