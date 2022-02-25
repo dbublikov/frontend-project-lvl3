@@ -10,7 +10,7 @@ const schema = yup.string().url().required();
 
 i18next.init({
   lng: 'ru',
-  debug: true,
+  // debug: true,
   resources: {
     ru,
   },
@@ -35,8 +35,12 @@ export default () => {
   const form = document.querySelector('form');
   const input = document.querySelector('#url_input');
   const errorText = document.querySelector('#error_text');
+  const feeds = document.querySelector('#feeds_list');
+  const posts = document.querySelector('#posts_list');
 
-  const watchedState = onChange(state, () => render(watchedState, { input, errorText }));
+  const watchedState = onChange(state, () => render(watchedState, {
+    input, errorText, feeds, posts,
+  }));
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -47,7 +51,7 @@ export default () => {
         if (watchedState.urls.includes(input.value)) {
           throw new TypeError('sameUrl', 'url exists');
         }
-        return axios.get(`https://hexlet-allorigins.herokuapp.com/get?url=${input.value}`);
+        return axios.get(`https://hexlet-allorigins.herokuapp.com/get?disableCache=true&url=${input.value}`);
       })
       .then((res) => { console.log(res); return res; })
       .then((res) => parserRSS(res.data.contents))
