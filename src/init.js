@@ -24,12 +24,6 @@ const errors = {
   network: i18next.t('errors.network'),
 };
 
-const form = document.querySelector('form');
-const input = document.querySelector('#url_input');
-const errorText = document.querySelector('#error_text');
-const feeds = document.querySelector('#feeds_list');
-const posts = document.querySelector('#posts_list');
-
 /* eslint-disable no-param-reassign */
 
 const updatePosts = (watchedState, timeout = 5000) => {
@@ -52,28 +46,44 @@ export default () => {
     feeds: [],
     posts: [],
     error: null,
+    modal: { title: '', content: '', link: '#' },
+    readIds: new Set(),
   };
 
-  const watchedState = onChange(state, () => render(watchedState, {
-    input, errorText, feeds, posts,
-  }));
+  const elements = {
+    input: document.querySelector('#url_input'),
+    errorText: document.querySelector('#error_text'),
+    addButton: document.querySelector('#add_button'),
+    feeds: document.querySelector('#feeds_list'),
+    posts: document.querySelector('#posts_list'),
+    feedsTitle: document.querySelector('#feeds_title'),
+    postsTitle: document.querySelector('#posts_title'),
+    exampleText: document.querySelector('#example_text'),
 
+    modalTitle: document.querySelector('#modal_title'),
+    modalContent: document.querySelector('#modal_body'),
+    modalLink: document.querySelector('#modal_link'),
+  };
+
+  const watchedState = onChange(state, () => render(watchedState, elements));
+
+  const form = document.querySelector('form');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     watchedState.error = null;
 
-    schema.validate(input.value)
+    schema.validate(elements.input.value)
       .then(() => {
-        if (watchedState.urls.includes(input.value)) {
+        if (watchedState.urls.includes(elements.input.value)) {
           throw new TypeError('sameUrl', 'url exists');
         }
-        return downloadRSS(input.value);
+        return downloadRSS(elements.input.value);
       })
       .then(({ title, description, items }) => {
-        watchedState.feeds.push({ title, description, url: input.value });
+        watchedState.feeds.push({ title, description, url: elements.input.value });
         watchedState.posts.push(...items);
-        watchedState.urls.push(input.value);
-        input.value = '';
+        watchedState.urls.push(elements.input.value);
+        elements.input.value = '';
       })
       .catch((err) => {
         // console.log(err);
@@ -83,5 +93,7 @@ export default () => {
       });
   });
 
+  console.log('state:', state);
   updatePosts(watchedState);
+  render(watchedState, elements);
 };

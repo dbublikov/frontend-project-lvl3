@@ -11,25 +11,48 @@
 <body>
   <div class="container mt-4">
 
+    <!-- FORM -->
     <form class="col" data-testid="form_test">
       <div class="row">
         <div class="col-md-10">
           <input id="url_input" type="text" class="form-control" placeholder="RSS link">
         </div>
         <div class="col-md-2">
-          <button type="submit" class="btn btn-outline-primary w-100">ADD</button>
+          <button type="submit" id="add_button" class="btn btn-outline-primary w-100">ADD</button>
         </div>
       </div>
-      <p class="text-muted mb-0">Example: https://ru.hexlet.io/lessons.rss</p>
+      <p id="example_text" class="text-muted mb-0">Example: https://ru.hexlet.io/lessons.rss</p>
       <p id="error_text" class="text-danger m-0 d-none"></p>
     </form>
 
+    <!-- MODAL -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal_title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="modal_body" class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <a id="modal_link" href="#" class="btn btn-primary">Full Article</a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
     <div id="main_container" class="container mt-4 mb-5 d-none">
-      <h2>feeds</h2>
+      <h2 id="feeds_title">feeds</h2>
+      <!-- feeds list -->
       <ul class="list-group mb-4" id="feeds_list">
-        <!-- <li class="list-group-item list-group-item-dark">An item</li> -->
       </ul>
-      <h2>posts</h2>
+
+      <h2 id="posts_title">posts</h2>
+      <!-- posts list -->
       <ul class="list-group" id="posts_list">
       </ul>
     </div>

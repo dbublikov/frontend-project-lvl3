@@ -34,12 +34,12 @@ export const parseRSS = (xmltext) => {
     };
   });
 
-  console.log({ title, description, items });
-  // console.log(doc);
+  // console.log({ title, description, items });
 
   return { title, description, items };
 };
 
 export const downloadRSS = (url) => axios.get(`https://hexlet-allorigins.herokuapp.com/get?disableCache=true&url=${url}`)
-  .then((res) => { console.log(res); return res; })
+  // .then((res) => { console.log(res); return res; })
+  .then((res) => res)
   .then((res) => parseRSS(res.data.contents));
