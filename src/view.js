@@ -7,7 +7,7 @@ export default (state, elements) => {
   console.log('state: ', state);
 
   const {
-    input, errorText, feeds, posts,
+    input, errorText, feeds, posts, modalTitle, modalContent, modalLink,
   } = elements;
 
   elements.addButton.textContent = i18next.t('navigation.add');
@@ -34,8 +34,8 @@ export default (state, elements) => {
       h3.textContent = feed.title;
       p.textContent = feed.description;
 
-      li.prepend(h3, p);
-      feeds.prepend(li);
+      li.append(h3, p);
+      feeds.append(li);
     });
 
     // Render posts
@@ -47,7 +47,7 @@ export default (state, elements) => {
       a.classList.add(state.readIds.has(post.guid) ? 'fw-normal' : 'fw-bold');
       a.textContent = post.title;
       a.setAttribute('href', post.link);
-      li.prepend(a);
+      li.append(a);
 
       // Render button
       const showButton = document.createElement('button');
@@ -83,4 +83,8 @@ export default (state, elements) => {
   }
 
   // console.log(state);
+
+  modalTitle.textContent = state.modal.title;
+  modalContent.textContent = state.modal.content;
+  modalLink.setAttribute('href', state.modal.link);
 };
