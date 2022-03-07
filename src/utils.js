@@ -11,7 +11,7 @@ export class TypeError extends Error {
 export const parseRSS = (xmltext) => {
   const doc = new DOMParser().parseFromString(xmltext, 'application/xml');
 
-  console.log(doc);
+  // console.log(doc);
 
   if (doc.querySelector('parsererror')) {
     throw new TypeError('rss', 'Not valid RSS');

@@ -40,18 +40,20 @@ const updatePosts = (watchedState, timeout = 5000) => {
     .then(() => setTimeout(() => updatePosts(watchedState), timeout));
 };
 
-export default () => {
+export default async () => {
   const state = {
     urls: [],
     feeds: [],
     posts: [],
     error: null,
+    isSuccess: null,
     modal: { title: '', content: '', link: '#' },
     readIds: new Set(),
   };
 
   const elements = {
     input: document.querySelector('#url_input'),
+    infoText: document.querySelector('#info_text'),
     errorText: document.querySelector('#error_text'),
     addButton: document.querySelector('#add_button'),
     feeds: document.querySelector('#feeds_list'),
@@ -83,17 +85,18 @@ export default () => {
         watchedState.feeds.push({ title, description, url: elements.input.value });
         watchedState.posts.push(...items);
         watchedState.urls.push(elements.input.value);
+        watchedState.isSuccess = true;
         elements.input.value = '';
       })
       .catch((err) => {
         // console.log(err);
         const type = err.type ?? 'network';
         watchedState.error = { type, message: errors[type] };
+        watchedState.isSuccess = false;
         console.log(watchedState.error);
       });
   });
 
-  console.log('state:', state);
-  updatePosts(watchedState);
   render(watchedState, elements);
+  updatePosts(watchedState);
 };
