@@ -2,19 +2,25 @@
 
 plugins:
   - jest
-  - babel
+  - testing-library
+  - jest-dom
 
 env:
-  node: true
   jest: true
   browser: true
-
-parser: babel-eslint
+  es2020: true
 
 extends:
   - 'airbnb-base'
   - 'plugin:jest/recommended'
+  - 'plugin:testing-library/react'
+  - "plugin:jest-dom/recommended"
+
+parserOptions:
+  ecmaVersion: latest
 
 rules:
-  no-console: 0
   import/extensions: 0
+  import/no-unresolved: 0
+  no-param-reassign: 0
+  no-console: 0
