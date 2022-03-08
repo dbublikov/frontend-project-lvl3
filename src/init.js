@@ -35,11 +35,12 @@ const updatePosts = (watchedState, timeout = 5000) => {
       const type = err.type ?? 'network';
       watchedState.error = { type, message: errors[type] };
     }));
+
   Promise.allSettled(rssChanges)
     .then(() => setTimeout(() => updatePosts(watchedState), timeout));
 };
 
-export default async () => {
+export default () => {
   const state = {
     urls: [],
     feeds: [],
