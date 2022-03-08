@@ -1,6 +1,7 @@
+/* eslint-disable no-param-reassign */
+import * as yup from 'yup';
 import _ from 'lodash';
 import onChange from 'on-change';
-import * as yup from 'yup';
 import i18next from 'i18next';
 import { downloadRSS, TypeError } from './utils';
 import render from './view';
@@ -23,8 +24,6 @@ const errors = {
   sameUrl: i18next.t('errors.sameUrl'),
   network: i18next.t('errors.network'),
 };
-
-/* eslint-disable no-param-reassign */
 
 const updatePosts = (watchedState, timeout = 5000) => {
   const rssChanges = watchedState.urls.map((url) => downloadRSS(url)
