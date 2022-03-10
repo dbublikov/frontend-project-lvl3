@@ -14,10 +14,11 @@
     <form class="col" data-testid="form_test">
       <div class="row">
         <div class="col-md-10">
-          <input id="url_input" type="text" class="form-control" placeholder="RSS link">
+          <input required id="url_input" type="text" name="url" aria-label="url" class="form-control"
+            placeholder="RSS link">
         </div>
         <div class="col-md-2">
-          <button type="submit" id="add_button" class="btn btn-outline-primary w-100">ADD</button>
+          <button type="submit" id="add_button" aria-label="add" class="btn btn-outline-primary w-100">ADD</button>
         </div>
       </div>
       <p id="example_text" class="text-muted mb-0">Example: https://ru.hexlet.io/lessons.rss</p>
@@ -26,15 +27,13 @@
 
     <!-- MODAL -->
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modal_title">Modal title</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div id="modal_body" class="modal-body">
-            ...
-          </div>
+          <div id="modal_body" class="modal-body"></div>
           <div class="modal-footer">
             <a id="modal_link" href="#" class="btn btn-primary">Full Article</a>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

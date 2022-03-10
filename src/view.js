@@ -16,6 +16,9 @@ export default (state, elements) => {
   elements.feedsTitle.textContent = i18next.t('content.feeds');
   elements.postsTitle.textContent = i18next.t('content.posts');
 
+  elements.input.readOnly = state.isLoading;
+  elements.addButton.disabled = state.isLoading;
+
   // Render error
   if (state.error) {
     const { type } = state.error;
@@ -28,11 +31,13 @@ export default (state, elements) => {
     infoText.classList.remove('d-none');
     return;
   }
+
+  // Render success
   if (state.isSuccess) {
     infoText.textContent = i18next.t('info.success');
+    infoText.classList.remove('d-none');
     infoText.classList.remove('text-danger');
     infoText.classList.add('text-success');
-    infoText.classList.remove('d-none');
   }
 
   const container = document.querySelector('#main_container');
@@ -59,8 +64,8 @@ export default (state, elements) => {
     posts.innerHTML = '';
     state.posts.forEach((post) => {
       const li = document.createElement('li');
-      li.classList.add('list-group-item', 'list-group-item-dark', 'd-flex', 'justify-content-between');
       const a = document.createElement('a');
+      li.classList.add('list-group-item', 'list-group-item-dark', 'd-flex', 'justify-content-between');
       a.classList.add(state.readIds.has(post.guid) ? 'fw-normal' : 'fw-bold');
       a.textContent = post.title;
       a.setAttribute('href', post.link);
@@ -72,6 +77,9 @@ export default (state, elements) => {
       showButton.dataset.bsToggle = 'modal';
       showButton.dataset.bsTarget = '#modal';
       showButton.textContent = i18next.t('navigation.preview');
+      showButton.type = 'button';
+      showButton.name = 'Просмотр';
+      showButton.ariaLabel = 'Просмотр';
       showButton.id = `show_${post.guid}`;
       showButton.addEventListener('click', () => {
         state.modal.title = post.title;

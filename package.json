@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/dbublikov/frontend-project-lvl3/workflows/hexlet-check/badge.svg)](https://github.com/dbublikov/frontend-project-lvl3/actions)",
   "main": "src/init.js",
+  "type": "module",
   "scripts": {
     "test": "jest --colors"
   },
@@ -29,10 +30,12 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/eslint-parser": "^7.15.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.15.4",
     "@testing-library/dom": "^7.29.4",
     "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.1.1",
@@ -45,6 +48,8 @@
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jest": "^24.5.2",
+    "eslint-plugin-jest-dom": "^4.0.1",
+    "eslint-plugin-testing-library": "^5.0.6",
     "html-webpack-plugin": "^5.3.2",
     "jest": "^27.1.1",
     "jest-cli": "^27.1.1",
