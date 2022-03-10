@@ -6,7 +6,7 @@ export default (state, elements) => {
   console.log('state: ', state);
 
   const {
-    input, infoText, feeds, posts, modalTitle, modalContent, modalLink,
+    input, infoText, feeds, posts, modalTitle, modalContent, modalLink
   } = elements;
 
   input.classList.remove('is-invalid');
@@ -15,6 +15,8 @@ export default (state, elements) => {
   elements.exampleText.textContent = i18next.t('content.example');
   elements.feedsTitle.textContent = i18next.t('content.feeds');
   elements.postsTitle.textContent = i18next.t('content.posts');
+  elements.modalLink.textContent = i18next.t('modal.article');
+  elements.modalClose.textContent = i18next.t('modal.close');
 
   elements.input.readOnly = state.isLoading;
   elements.addButton.disabled = state.isLoading;

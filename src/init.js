@@ -40,7 +40,7 @@ const updatePosts = (watchedState, timeout = 5000) => {
     .then(() => setTimeout(() => updatePosts(watchedState), timeout));
 };
 
-export default () => {
+export default async () => {
   const state = {
     urls: [],
     feeds: [],
@@ -66,6 +66,7 @@ export default () => {
     modalTitle: document.querySelector('#modal_title'),
     modalContent: document.querySelector('#modal_body'),
     modalLink: document.querySelector('#modal_link'),
+    modalClose: document.querySelector('#modal_close'),
   };
 
   const watchedState = onChange(state, () => render(watchedState, elements));
@@ -84,9 +85,10 @@ export default () => {
       })
       .then(({ title, description, items }) => {
         console.log('items', items);
-        watchedState.feeds.unshift({ title, description, url: elements.input.value });
-        watchedState.posts.unshift(...items);
+        watchedState.feeds.push({ title, description, url: elements.input.value });
+        watchedState.posts.push(...items);
         watchedState.urls.push(elements.input.value);
+
         watchedState.error = null;
         watchedState.isSuccess = true;
         elements.input.value = '';

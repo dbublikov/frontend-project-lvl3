@@ -16,6 +16,10 @@ export default {
       add: 'Добавить',
       preview: 'Просмотр',
     },
+    modal: {
+      article: 'Читать полностью',
+      close: 'Закрыть',
+    },
     info: {
       success: 'RSS успешно загружен',
     },
