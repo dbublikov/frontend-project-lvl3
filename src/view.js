@@ -6,7 +6,7 @@ export default (state, elements) => {
   console.log('state: ', state);
 
   const {
-    input, infoText, feeds, posts, modalTitle, modalContent, modalLink
+    input, infoText, feeds, posts, modalTitle, modalContent, modalLink,
   } = elements;
 
   input.classList.remove('is-invalid');
