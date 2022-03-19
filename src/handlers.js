@@ -39,6 +39,23 @@ export const handleAddFeed = (e, state, i18nInstance) => {
   }
 };
 
+export const handleSelectLanguage = (e, state, i18nInstance) => {
+  i18nInstance.changeLanguage(e.target.dataset.lang);
+  state.lang = e.target.dataset.lang;
+  state.form.state = 'filling';
+  state.form.error = null;
+  document.querySelector('#url_input').value = '';
+
+  const buttonGroup = e.target.closest('.btn-group');
+  const active = buttonGroup.querySelector('.active');
+
+  active.classList.remove('btn-secondary', 'active');
+  active.classList.add('btn-outline-secondary');
+
+  e.target.parentElement.classList.remove('btn-outline-secondary');
+  e.target.parentElement.classList.add('btn-secondary', 'active');
+};
+
 export const handleViewPost = (post) => {
   document.body.classList.add('modal-open');
 

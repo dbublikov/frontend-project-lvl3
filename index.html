@@ -27,6 +27,15 @@
   </div>
 
   <div class="container mt-4">
+    <!-- Radio buttons -->
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" style="padding-bottom: 15px;">
+      <label class="btn btn-secondary active">
+        <input type="radio" autocomplete="off" data-lang="en" checked> Eng
+      </label>
+      <label class="btn btn-outline-secondary">
+        <input type="radio" autocomplete="off" data-lang="ru"> Рус
+      </label>
+    </div>
     <!-- FORM -->
     <form class="col" data-testid="form_test">
       <div class="row">
@@ -35,11 +44,11 @@
             placeholder="RSS link">
         </div>
         <div class="col-md-2">
-          <button type="submit" id="add_button" aria-label="add" class="btn btn-outline-primary w-100">ADD</button>
+          <button type="submit" id="add_button" aria-label="add" class="btn btn-outline-primary w-100">Add</button>
         </div>
       </div>
       <p id="example_text" class="text-muted mb-0">Example: https://ru.hexlet.io/lessons.rss</p>
-      <p id="info_text" class="text-danger m-0 d-none"></p>
+      <p id="info_text"></p>
     </form>
 
     <!-- MAIN -->

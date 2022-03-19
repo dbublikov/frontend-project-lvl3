@@ -9,7 +9,7 @@ export default {
     content: {
       posts: 'Посты',
       feeds: 'Фиды',
-      example: 'Пример: https://ru.hexlet.io/lessons.rss',
+      example: 'Пример',
     },
     navigation: {
       add: 'Добавить',

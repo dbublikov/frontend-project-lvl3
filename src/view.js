@@ -6,7 +6,8 @@ const render = (state, i18nInstance, elements) => {
   // console.log('rerender');
   // console.log('state: ', state);
 
-  elements.exampleText.textContent = i18nInstance.t('content.example');
+  elements.addButton.textContent = i18nInstance.t('navigation.add');
+  elements.exampleText.textContent = `${i18nInstance.t('content.example')}: https://ru.hexlet.io/lessons.rss`;
   elements.feedsTitle.textContent = i18nInstance.t('content.feeds');
   elements.postsTitle.textContent = i18nInstance.t('content.posts');
   elements.modalLink.textContent = i18nInstance.t('modal.article');
@@ -96,6 +97,9 @@ export default (state, i18nInstance, elements) => {
     console.log(state);
     if (path === 'form.state') {
       switch (value) {
+        case 'filling':
+          clearFeedback();
+          break;
         case 'pending':
           toggleForm(true);
           clearFeedback();
