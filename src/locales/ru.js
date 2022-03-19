@@ -1,11 +1,10 @@
 export default {
   translation: {
     errors: {
-      url: 'Ссылка должна быть валидным URL',
-      required: 'Поле не должно быть пустым',
-      rss: 'Ресурс не содержит валидный RSS',
+      invalidUrl: 'Ссылка должна быть валидным URL',
+      invalidRSS: 'Ресурс не содержит валидный RSS',
       sameUrl: 'RSS уже существует',
-      network: 'Ошибка сети',
+      netError: 'Ошибка сети',
     },
     content: {
       posts: 'Посты',

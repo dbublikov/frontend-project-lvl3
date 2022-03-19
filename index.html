@@ -9,6 +9,23 @@
 </head>
 
 <body>
+  <!-- MODAL -->
+  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal_title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="modal_body" class="modal-body"></div>
+        <div class="modal-footer">
+          <a id="modal_link" href="#" target="_blank" class="btn btn-primary">Full Article</a>
+          <button id="modal_close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container mt-4">
     <!-- FORM -->
     <form class="col" data-testid="form_test">
@@ -24,23 +41,6 @@
       <p id="example_text" class="text-muted mb-0">Example: https://ru.hexlet.io/lessons.rss</p>
       <p id="info_text" class="text-danger m-0 d-none"></p>
     </form>
-
-    <!-- MODAL -->
-    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modal_title">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div id="modal_body" class="modal-body"></div>
-          <div class="modal-footer">
-            <a id="modal_link" href="#" target="_blank" class="btn btn-primary">Full Article</a>
-            <button id="modal_close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- MAIN -->
     <div id="main_container" class="container mt-4 mb-5 d-none">
