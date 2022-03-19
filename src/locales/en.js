@@ -11,7 +11,7 @@ export default {
       feeds: 'Feeds',
       example: 'Example',
     },
-    navigation: {
+    buttons: {
       add: 'Add',
       preview: 'View',
     },

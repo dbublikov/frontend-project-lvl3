@@ -6,7 +6,7 @@ const render = (state, i18nInstance, elements) => {
   // console.log('rerender');
   // console.log('state: ', state);
 
-  elements.addButton.textContent = i18nInstance.t('navigation.add');
+  elements.addButton.textContent = i18nInstance.t('buttons.add');
   elements.exampleText.textContent = `${i18nInstance.t('content.example')}: https://ru.hexlet.io/lessons.rss`;
   elements.feedsTitle.textContent = i18nInstance.t('content.feeds');
   elements.postsTitle.textContent = i18nInstance.t('content.posts');
@@ -48,7 +48,7 @@ const render = (state, i18nInstance, elements) => {
           class="btn btn-primary btn-sm"
           data-bs-toggle="modal"
           data-bs-target="#modal"
-        >${i18nInstance.t('navigation.preview')}</button>
+        >${i18nInstance.t('buttons.preview')}</button>
       `;
 
       const a = li.querySelector('a');
@@ -97,9 +97,9 @@ export default (state, i18nInstance, elements) => {
     console.log(state);
     if (path === 'form.state') {
       switch (value) {
-        case 'filling':
-          clearFeedback();
-          break;
+        // case 'filling':
+        //   clearFeedback();
+        //   break;
         case 'pending':
           toggleForm(true);
           clearFeedback();
@@ -132,6 +132,9 @@ export default (state, i18nInstance, elements) => {
         elements.input.classList.remove('is-invalid');
         elements.infoText.classList.remove('text-danger');
       }
+    } else if (path === 'lang') {
+      clearFeedback();
+      render(watchedState, i18nInstance, elements);
     } else {
       render(watchedState, i18nInstance, elements);
     }

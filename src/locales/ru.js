@@ -11,7 +11,7 @@ export default {
       feeds: 'Фиды',
       example: 'Пример',
     },
-    navigation: {
+    buttons: {
       add: 'Добавить',
       preview: 'Просмотр',
     },

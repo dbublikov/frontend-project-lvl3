@@ -6,13 +6,16 @@ import resources from './locales/index.js';
 
 export default async () => {
   const state = {
-    lang: 'en',
+    lang: 'ru',
     urls: [],
     feeds: [],
     posts: [],
     form: {
       state: 'filling',
       error: null,
+    },
+    updateProcess: {
+      state: 'idle',
     },
     readIds: new Set(),
   };

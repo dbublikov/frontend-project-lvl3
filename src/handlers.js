@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import loadRSS from './loadRSS.js';
+import updateRSS from './updateRSS.js';
 import validateLink from './validateLink.js';
 
 export const handleAddFeed = (e, state, i18nInstance) => {
@@ -23,6 +24,9 @@ export const handleAddFeed = (e, state, i18nInstance) => {
         state.urls.push(link);
 
         state.form.state = 'success';
+
+        updateRSS(link, state);
+
         e.target.reset();
       })
       .catch((err) => {
@@ -42,8 +46,6 @@ export const handleAddFeed = (e, state, i18nInstance) => {
 export const handleSelectLanguage = (e, state, i18nInstance) => {
   i18nInstance.changeLanguage(e.target.dataset.lang);
   state.lang = e.target.dataset.lang;
-  state.form.state = 'filling';
-  state.form.error = null;
   document.querySelector('#url_input').value = '';
 
   const buttonGroup = e.target.closest('.btn-group');
