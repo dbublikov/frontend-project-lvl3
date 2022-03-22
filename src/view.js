@@ -94,12 +94,9 @@ export default (state, i18nInstance, elements) => {
   };
 
   const watchedState = onChange(state, (path, value) => {
-    console.log(state);
+    console.log('state: ', state);
     if (path === 'form.state') {
       switch (value) {
-        // case 'filling':
-        //   clearFeedback();
-        //   break;
         case 'pending':
           toggleForm(true);
           clearFeedback();

@@ -9,6 +9,8 @@ export const handleAddFeed = (e, state, i18nInstance) => {
   const formData = new FormData(e.target);
   const link = formData.get('url').trim();
 
+  document.querySelector('#url_input').value = '';
+
   const error = validateLink(link, state.feeds);
   console.log('validate error: ', error);
   state.form.error = error;
@@ -18,7 +20,7 @@ export const handleAddFeed = (e, state, i18nInstance) => {
 
     loadRSS(link)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         state.feeds.unshift(res.feed);
         state.posts = [...res.posts, ...state.posts];
         state.urls.push(link);
